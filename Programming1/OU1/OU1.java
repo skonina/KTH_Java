@@ -1,6 +1,10 @@
 import java.util.*; // Scanner , Locale
 class Temperatures {
 	public static void main(String[] args) {
+		
+		final double INF = 10^308;
+		
+		
 		System.out.println(" TEMPERATURES \n ");
 		// input tools
 		Scanner in = new Scanner(System. in ); in .useLocale(Locale.US);
@@ -12,11 +16,40 @@ class Temperatures {
 		int nofMeasurementsPerWeek = in .nextInt();
 		// storage space for temperature data
 		double[][] t = new double[nofWeeks + 1][nofMeasurementsPerWeek + 1];
+	
+		double[] minT = new double[nofWeeks + 1];
+		double[] maxT = new double[nofWeeks + 1];
+		double[] sumT = new double[nofWeeks + 1];
+		double[] avgT = new double[nofWeeks + 1];
+		
+		
+		double minTemp = INF;
+		double maxTemp = 0;
+		double sumTemp = 0;
+		double avgTemp = 0;
+	
+    	
+	
 		// read the temperatures
 		for (int week = 1; week <= nofWeeks; week++) {
 			System.out.println(" temperatures - week " + week + " : ");
-			for (int reading = 1; reading <= nofMeasurementsPerWeek; reading++)
-			t[week][reading] = in .nextDouble();
+			minT[week]=INF;
+			for (int reading = 1; reading <= nofMeasurementsPerWeek; reading++){
+			  t[week][reading] = in .nextDouble();
+			  if (t[week][reading] > maxT[week])
+			    maxT[week] = t[week][reading];
+			  if (t[week][reading] < minT[week])
+			    minT[week] = t[week][reading];
+			  avgT[week] += t[week][reading]; 
+			}
+			
+			avgT[week] = avgT[week] / nofMeasurementsPerWeek;
+			avgTemp += avgT[week] / nofWeeks;
+			if (maxT[week] > maxTemp)
+			  maxTemp = maxT[week];
+			if (minT[week] < minTemp)
+			  minTemp = minT[week];
+			  
 		}
 		System.out.println();
 		// show the temperatures
@@ -25,29 +58,9 @@ class Temperatures {
 			for (int reading = 1; reading <= nofMeasurementsPerWeek; reading++)
 			System.out.print(t[week][reading] + " ");
 			System.out.println();
+			System.out.println("Week"+week+" Min:"+minT[week]+" Max:"+maxT[week]+" Avg:"+avgT[week]);
 		}
 		System.out.println();
-		// the least , greatest and average temperature - weekly
-		double[] minT = new double[nofWeeks + 1];
-		double[] maxT = new double[nofWeeks + 1];
-		double[] sumT = new double[nofWeeks + 1];
-		double[] avgT = new double[nofWeeks + 1];
-		// compute and store the least , greatest and average
-		// temperature for each week .
-		// *** WRITE YOUR CODE HERE ***
-		// show the least , greatest and average temperature for
-		// each week
-		// *** WRITE YOUR CODE HERE ***
-		// the least , greatest and average temperature - whole period
-		double minTemp = minT[1];
-		double maxTemp = maxT[1];
-		double sumTemp = sumT[1];
-		double avgTemp = 0;
-		// compute and store the least , greatest and average
-		// temperature for the whole period
-		// *** WRITE YOUR CODE HERE ***
-		// show the least , greatest and average temperature for
-		// the whole period
-		// *** WRITE YOUR CODE HERE ***
+		System.out.println("Overall Min:"+minTemp+" Max:"+maxTemp+" Avg:"+avgTemp);
 	}
 }
