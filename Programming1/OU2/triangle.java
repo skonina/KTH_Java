@@ -12,8 +12,8 @@ class Triangle {
   
   
   public static double circumradius (double a, double b, double c) {
-    double cnr = Math.sqrt((a*b*c)/((a+b+c)*(b+c-a)*(c+a-b)*(a+b-c)));
-    return cnr;
+    double cnr = ((a*b*c)/(Math.sqrt(((a+b+c)*(b+c-a)*(c+a-b)*(a+b-c)))));  
+	return cnr;
   }
   
   public static double inradius (double a, double b, double c) {
