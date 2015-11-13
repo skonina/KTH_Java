@@ -35,7 +35,7 @@ class Temperatures {
 			System.out.println(" temperatures - week " + week + " : ");
 			minT[week]=INF;
 			for (int reading = 1; reading <= nofMeasurementsPerWeek; reading++){
-			  t[week][reading] = in .nextDouble();
+			  t[week][reading] = in.nextDouble();
 			  if (t[week][reading] > maxT[week])
 			    maxT[week] = t[week][reading];
 			  if (t[week][reading] < minT[week])
